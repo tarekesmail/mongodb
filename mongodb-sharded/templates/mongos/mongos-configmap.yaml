@@ -20,20 +20,3 @@ data:
 {{- end }}
 
 ---
-
-apiVersion: v1
-data:
-  script.js: |
-    db = db.getSiblingDB("{{ .Values.dBCredentials.database }}")
-    db.createUser(
-      {
-        user: "{{ .Values.dBCredentials.user }}",
-        pwd: "{{ .Values.dBCredentials.password }}",
-        roles: [
-          { role: "dbOwner", db: "{{ .Values.dBCredentials.database }}" }
-        ]
-      }
-    )
-kind: ConfigMap
-metadata:
-  name: mongodb-scripts
